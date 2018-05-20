@@ -8,3 +8,6 @@
 * Front-end decision between React or Vue. 
 
 * Stack to be hosted on AWS eventually but possibly use heroku for short-term prototyping.
+
+> 20/05/2018
+* Will be a limited user base but am interested in using oauth as I've never used it before and am keen to learn. 
