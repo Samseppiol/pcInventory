@@ -25,7 +25,7 @@ provider:
       Resource:
         - { "Fn::GetAtt": ["InventoryDynamoDbTable", "Arn" ] }
   environment:
-    USERS_TABLE: ${self:custom.tableName}
+    INVENTORY_TABLE: ${self:custom.tableName}
 
 functions: 
   app: 
@@ -37,6 +37,12 @@ functions:
       - http:
           path: /inventory/all
           method: get
+      - http:
+          path: /inventory/{proxy*}
+          method: get
+      - http:
+          path: /inventory/new
+          method: post
  
 resources:
   Resources:
@@ -45,17 +51,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: "ComponentName"
-            AttributeType: "S"
-          -
-            AttributeName: "Quantity"
-            AttributeType: "N" 
-          -
-            AttributeName: "Timestamp"
-            AttributeType: "S"
+            AttributeName: componentName
+            AttributeType: S
         KeySchema:
           -
-            AttributeName: ComponentName
+            AttributeName: componentName
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
