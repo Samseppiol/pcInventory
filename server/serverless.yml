@@ -1,0 +1,20 @@
+service: pcInventoryServer 
+
+provider: 
+  name: aws
+  runtime: nodejs6.10 
+  stage: dev
+  region: ap-southeast-2
+
+functions: 
+  app: 
+    handler: index.handler 
+    events:
+      - http: 
+          path: /
+          method: get 
+      - http:
+          path: /inventory/all
+          method: get
+       
+

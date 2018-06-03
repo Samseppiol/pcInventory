@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Samseppiol/pcInventory#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.17.4",
+    "serverless-http": "^1.5.5"
   }
 }
