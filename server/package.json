@@ -20,5 +20,9 @@
     "express": "^4.16.3",
     "nodemon": "^1.17.4",
     "serverless-http": "^1.5.5"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^3.25.1"
   }
 }
