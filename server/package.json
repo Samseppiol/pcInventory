@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Samseppiol/pcInventory#readme",
   "dependencies": {
+    "aws-sdk": "^2.250.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "nodemon": "^1.17.4",
     "serverless-http": "^1.5.5"

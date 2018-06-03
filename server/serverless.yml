@@ -15,6 +15,17 @@ provider:
   runtime: nodejs6.10 
   stage: dev
   region: ap-southeast-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource:
+        - { "Fn::GetAtt": ["InventoryDynamoDbTable", "Arn" ] }
+  environment:
+    USERS_TABLE: ${self:custom.tableName}
 
 functions: 
   app: 
@@ -26,5 +37,28 @@ functions:
       - http:
           path: /inventory/all
           method: get
-       
+ 
+resources:
+  Resources:
+    InventoryDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "ComponentName"
+            AttributeType: "S"
+          -
+            AttributeName: "Quantity"
+            AttributeType: "N" 
+          -
+            AttributeName: "Timestamp"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: ComponentName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
 
