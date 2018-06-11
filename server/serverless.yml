@@ -32,6 +32,8 @@ provider:
 functions: 
   app: 
     handler: index.handler 
+    timeout: 10
+    memorySize: 128
     events:
       - http: 
           path: /
