@@ -20,6 +20,7 @@
     "aws-sdk": "^2.250.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "moment": "^2.22.2",
     "nodemon": "^1.17.4",
     "serverless-http": "^1.5.5"
   },

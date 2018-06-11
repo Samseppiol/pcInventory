@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const AWS = require('aws-sdk');
+const moment = require('moment');
+const time = moment()
 
 const INVENTORY_TABLE = process.env.INVENTORY_TABLE;
 
@@ -77,7 +79,7 @@ app.post('/inventory/new', (req, res) => {
     } else if (typeof quantity !== 'number') {
         res.status(400).json({ error: "Quantity must be a number"});
     }
-    const timestamp = new Date();
+    const timestamp = time.format('YYYY-MM-DD HH:mm:ss Z')  
     const params = {
         TableName: INVENTORY_TABLE,
         Item: {
@@ -91,7 +93,8 @@ app.post('/inventory/new', (req, res) => {
         if (err) {
             res.status(400).json({ error: 'Could not create component'})
         }
-        res.json({ componentName, quantity, timestamp})
+        console.log(timestamp)
+        res.json({ componentName, quantity, timestamp })
     })
 })
 
