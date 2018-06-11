@@ -95,6 +95,26 @@ app.post('/inventory/new', (req, res) => {
     })
 })
 
+app.delete('/inventory/delete/:componentName', (req, res) => {
+    const params = {
+        TableName: INVENTORY_TABLE,
+        Key: {
+            componentName: req.params.componentName,
+        },
+    }
+    
+    dynamoDb.delete(params, (err, data) => {
+        console.log(data)
+        if (err) {
+            console.error(`Unable to delete record: ${req.params.componentName}`)
+            res.status(400).json({ error: `Could not delete component ${req.params.componentName}`})
+        } else {
+            console.log(`Delete of item ${req.params.componentName} succeeded.`)
+            res.status(200).json({ message: `Delete of item ${req.params.componentName} successful`})
+        }
+    })
+})
+
 
 
 

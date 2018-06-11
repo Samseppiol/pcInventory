@@ -43,6 +43,9 @@ functions:
       - http:
           path: /inventory/new
           method: post
+      - http:
+          path: /inventory/delete/{proxy*}
+          method: delete
  
 resources:
   Resources:
