@@ -12,7 +12,7 @@ custom:
 
 provider: 
   name: aws
-  runtime: nodejs6.10 
+  runtime: nodejs8.10 
   stage: dev
   region: ap-southeast-2
   iamRoleStatements:
@@ -22,6 +22,8 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
+        - dynamodb:Scan
+        - dynamodb:DeleteItem
       Resource:
         - { "Fn::GetAtt": ["InventoryDynamoDbTable", "Arn" ] }
   environment:
