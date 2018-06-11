@@ -24,8 +24,28 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
+
 app.get('/inventory/all', (req, res) => {
-    res.send('All inventory page!');
+    const params = {
+        TableName: INVENTORY_TABLE,
+    }
+ 
+    console.log(`Scanning ${params.TableName} table`)
+    // Using a scan should be fine as the table should be a very small amount of records. 
+    dynamoDb.scan(params, (err, data) => {
+        if (err) {
+            console.error("Unable to scan the table with error", err)
+            res.status(404).json({ error: "Table not found!" })
+        } else if (data.Count === 0 ){
+            res.status(404).json({ error: "No components found" })
+        }
+        else {
+            console.log("Scan succeeded")
+            res.json(data.Items)
+        }
+    });
+
+    
 })
 
 app.get('/inventory/:componentName', (req, res) => {
@@ -35,8 +55,6 @@ app.get('/inventory/:componentName', (req, res) => {
             componentName: req.params.componentName,
         },
     }  
-    console.log(req.params.componentName) 
-    console.log(params) 
 
     dynamoDb.get(params, (err, result) => {
         if (err) {
