@@ -38,13 +38,13 @@ functions:
           path: /inventory/all
           method: get
       - http:
-          path: /inventory/{proxy*}
+          path: /inventory/{proxy}
           method: get
       - http:
           path: /inventory/new
           method: post
       - http:
-          path: /inventory/delete/{proxy*}
+          path: /inventory/delete/{proxy}
           method: delete
  
 resources:
