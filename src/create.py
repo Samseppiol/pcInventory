@@ -36,7 +36,7 @@ def add_record(body):
         print(e.response['Error']['Message'])
         response = {
             "statusCode": 500,
-            "body": json.dumps("Error adding to database")
+            "body": json.dumps({"Message": "Error adding to database"})
         }
     
     return response
