@@ -13,23 +13,22 @@ def return_all_records():
 
     try:
         result = table.scan()
-        if 'Items' in result:
+        if result['Items'] == []:
+            response = {
+                "statusCode": 404,
+                "body": json.dumps({"Message": "No items found"})
+            }
+        else:
+            print("Successful scan, returning items")
             response = {
                 "statusCode": 200,
                 "body": json.dumps(result['Items'])
             }
-            print("Successful scan")
-        else:
-            response = {
-                "statusCode": 404,
-                "body": json.dumps("No items found")
-            }
-            print("No items found during scan")
     except ClientError as e:
         print(e.response['Error']['Message'])
         response = {
             "statusCode": 500,
-            "body": json.dumps("Error scanning database")
+            "body": json.dumps({"Message": "Error scanning database"})
         }
     
     return response
