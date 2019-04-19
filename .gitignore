@@ -1,0 +1,7 @@
+event
+/packages
+/venv
+
+function.zip
+build.sh
+deploy.sh

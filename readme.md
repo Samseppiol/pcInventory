@@ -1,10 +1,4 @@
-### Inventory Application
-> Personal project to build an inventory tracking application for a home business. 
+# Super simple API written in python using AWS lambda, API GW and dynamodb.
+> Probably very unconventional. Have sort of just started writing code, letting API Gateway do all of the routing and requests heavy lifting, just using the event and mapping that out to different methods in lambda.
 
-* Thoughts were to go entirely serverless which is always a great idea until you actually have to implement it.
-
-* Initial implementation will be Node/express back end. Might hook up DynamoDB instead of mongo to make conversion to serverless later down the track a bit easier. 
-
-* Front-end decision between React or Vue. 
-
-* Stack to be hosted on AWS eventually but possibly use heroku for short-term prototyping.
+> No real heavy lifting, literally just interacting with a data store.
