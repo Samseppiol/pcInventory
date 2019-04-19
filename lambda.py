@@ -1,4 +1,5 @@
 from src.create import add_record
+from src.scan import return_all_records
 
 def lambda_handler(event, context):
 
@@ -7,7 +8,7 @@ def lambda_handler(event, context):
 		if method == 'GET':
 			print('METHOD IS GET')
 			if event['pathParameters'] == None:
-				print('Goto Scan')
+				response = return_all_records()
 			else:
 				print('Goto get by id')
 		elif method == 'POST':
