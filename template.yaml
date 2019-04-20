@@ -26,4 +26,9 @@ Resources:
           Properties:
             Path: /products
             Method: get
+        Get:
+          Type: Api
+          Properties:
+            Path: /product/{name+}
+            Method: get
 

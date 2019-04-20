@@ -9,11 +9,12 @@ def lambda_handler(event, context):
 		if method == 'GET':
 			print('METHOD IS GET')
 			if event['pathParameters'] == None:
-				response = return_all_records()
+				return return_all_records()
 			else:
 				print('Goto get by id')
+				return get_record_by_name(event['pathParameters'])
 		elif method == 'POST':
-			response = add_record(event['body'])
+			return add_record(event['body'])
 		elif method == 'PUT':
 			print('Method is put')
 		elif method == 'PATCH':
@@ -24,5 +25,3 @@ def lambda_handler(event, context):
 			raise Exception("Non compatible http method")
 	else:
 		raise Exception("No http method found")
-	
-	return response
