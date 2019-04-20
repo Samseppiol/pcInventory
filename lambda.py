@@ -1,6 +1,7 @@
 from src.create import add_record
 from src.scan import return_all_records
 from src.get import get_record_by_name
+from src.delete import delete_record
 
 def lambda_handler(event, context):
 
@@ -18,7 +19,7 @@ def lambda_handler(event, context):
 		elif method == 'PUT':
 			print('Method is put')
 		elif method =='DELETE':
-			print('Method is delete')
+			return delete_record(event['pathParameters'])
 		else:
 			raise Exception("Non compatible http method")
 	else:

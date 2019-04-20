@@ -31,4 +31,9 @@ Resources:
           Properties:
             Path: /product/{name+}
             Method: get
+        Delete:
+          Type: Api
+          Properties:
+            Path: /product/delete/{name+}
+            Method: delete
 
