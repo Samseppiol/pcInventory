@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Product/Components API
+Globals:
+  Function:
+    Timeout: 5
+
+Resources:
+  ProductApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: lambda.lambda_handler
+      Runtime: python3.6
+      Environment:
+        Variables:
+          PRODUCTS_TABLE: "" 
+      Events:
+        Create:
+          Type: Api
+          Properties:
+            Path: /product
+            Method: post
+        Scan:
+          Type: Api
+          Properties:
+            Path: /products
+            Method: get
+        Get:
+          Type: Api
+          Properties:
+            Path: /product/{name+}
+            Method: get
+
