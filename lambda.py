@@ -17,8 +17,6 @@ def lambda_handler(event, context):
 			return add_record(event['body'])
 		elif method == 'PUT':
 			print('Method is put')
-		elif method == 'PATCH':
-			print('Method is patch')
 		elif method =='DELETE':
 			print('Method is delete')
 		else:
