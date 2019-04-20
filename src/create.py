@@ -5,9 +5,13 @@ import uuid
 
 import boto3
 from botocore.exceptions import ClientError
-dynamodb = boto3.resource('dynamodb')
 
-PRODUCTS_TABLE = os.environ['PRODUCTS_TABLE']
+if os.getenv("AWS_SAM_LOCAL", ""):
+    dynamodb = boto3.resource('dynamodb', endpoint_url="http://dynamodb:8000")
+    PRODUCTS_TABLE = "products"
+else:
+    dynamodb = boto3.resource('dynamodb')
+    PRODUCTS_TABLE = os.environ['PRODUCTS_TABLE']
 
 def add_record(body):
     print('METHOD IS POST')

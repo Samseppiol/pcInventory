@@ -1,5 +1,6 @@
 from src.create import add_record
 from src.scan import return_all_records
+from src.get import get_record_by_name
 
 def lambda_handler(event, context):
 
